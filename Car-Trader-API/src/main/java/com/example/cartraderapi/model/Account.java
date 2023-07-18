@@ -21,8 +21,6 @@ public class Account {
     @Column(name = "password", columnDefinition = "text")
     private String password;
 
-    @Column(name = "reset_password_token")
-    private String resetPasswordToken;
 
     @OneToOne(mappedBy = "account")
     @JsonBackReference
@@ -37,11 +35,10 @@ public class Account {
     public Account() {
     }
 
-    public Account(Integer idAccount, String nameAccount, String password, String resetPasswordToken, Employee employee, Customer customer, Set<AccountRole> accountRoles) {
+    public Account(Integer idAccount, String nameAccount, String password, Employee employee, Customer customer, Set<AccountRole> accountRoles) {
         this.idAccount = idAccount;
         this.nameAccount = nameAccount;
         this.password = password;
-        this.resetPasswordToken = resetPasswordToken;
         this.employee = employee;
         this.customer = customer;
         this.accountRoles = accountRoles;
@@ -71,13 +68,6 @@ public class Account {
         this.password = password;
     }
 
-    public String getResetPasswordToken() {
-        return resetPasswordToken;
-    }
-
-    public void setResetPasswordToken(String resetPasswordToken) {
-        this.resetPasswordToken = resetPasswordToken;
-    }
 
     public Employee getEmployee() {
         return employee;

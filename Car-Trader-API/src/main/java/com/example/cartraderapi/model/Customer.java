@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Set;
 
 @Entity
@@ -24,7 +23,9 @@ public class Customer {
     private String image;
     @Column(name = "address", columnDefinition = "Varchar(40)")
     private String address;
-    private Boolean gender;
+    @Column(name = "email", columnDefinition = "Varchar(40)")
+    private String email;
+    private boolean gender;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_account", referencedColumnName = "id_account")
     @JsonManagedReference
@@ -41,12 +42,13 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Integer idCustomer, String nameCustomer, String phoneNumber, String image, String address, Boolean gender, Account account, Set<Contract> contractSet, Set<TrialRegistration> trialRegistrationSet) {
+    public Customer(Integer idCustomer, String nameCustomer, String phoneNumber, String image, String address, String email, boolean gender, Account account, Set<Contract> contractSet, Set<TrialRegistration> trialRegistrationSet) {
         this.idCustomer = idCustomer;
         this.nameCustomer = nameCustomer;
         this.phoneNumber = phoneNumber;
         this.image = image;
         this.address = address;
+        this.email = email;
         this.gender = gender;
         this.account = account;
         this.contractSet = contractSet;
@@ -93,11 +95,19 @@ public class Customer {
         this.address = address;
     }
 
-    public Boolean getGender() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 

@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "product_type")
-public class ProductType {
+@Table(name = "car_type")
+public class CarType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -17,17 +17,17 @@ public class ProductType {
     @Column(name = "name_type",columnDefinition = "Varchar(40)")
     private String nameType;
 
-    @OneToMany(mappedBy = "productType",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "carType",cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Product> productSet;
+    private Set<Car> carSet;
 
-    public ProductType() {
+    public CarType() {
     }
 
-    public ProductType(Integer idType, String nameType, Set<Product> productSet) {
+    public CarType(Integer idType, String nameType, Set<Car> carSet) {
         this.idType = idType;
         this.nameType = nameType;
-        this.productSet = productSet;
+        this.carSet = carSet;
     }
 
     public Integer getIdType() {
@@ -46,11 +46,11 @@ public class ProductType {
         this.nameType = nameType;
     }
 
-    public Set<Product> getProductSet() {
-        return productSet;
+    public Set<Car> getCarSet() {
+        return carSet;
     }
 
-    public void setProductSet(Set<Product> productSet) {
-        this.productSet = productSet;
+    public void setCarSet(Set<Car> carSet) {
+        this.carSet = carSet;
     }
 }

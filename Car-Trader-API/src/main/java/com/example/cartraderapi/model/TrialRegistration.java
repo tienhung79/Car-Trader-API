@@ -20,8 +20,8 @@ public class TrialRegistration {
     @JoinColumn(name = "id_employee", referencedColumnName = "id_employee")
     private Employee employee;
     @ManyToOne
-    @JoinColumn(name = "id_product", referencedColumnName = "id_product")
-    private Product product;
+    @JoinColumn(name = "id_car", referencedColumnName = "id_car")
+    private Car car;
 
     @ManyToOne
     @JoinColumn(name = "id_customer", referencedColumnName = "id_customer")
@@ -30,12 +30,12 @@ public class TrialRegistration {
     public TrialRegistration() {
     }
 
-    public TrialRegistration(Integer idTrialRegistration, LocalDate dateOfRegistration, Boolean statusTrialRegistration, Employee employee, Product product, Customer customer) {
+    public TrialRegistration(Integer idTrialRegistration, LocalDate dateOfRegistration, Boolean statusTrialRegistration, Employee employee, Car car, Customer customer) {
         this.idTrialRegistration = idTrialRegistration;
         this.dateOfRegistration = dateOfRegistration;
         this.statusTrialRegistration = statusTrialRegistration;
         this.employee = employee;
-        this.product = product;
+        this.car = car;
         this.customer = customer;
     }
 
@@ -71,12 +71,12 @@ public class TrialRegistration {
         this.employee = employee;
     }
 
-    public Product getProduct() {
-        return product;
+    public Car getCar() {
+        return car;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public Customer getCustomer() {

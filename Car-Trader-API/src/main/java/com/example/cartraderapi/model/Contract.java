@@ -30,13 +30,13 @@ public class Contract {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "id_product", referencedColumnName = "id_product")
-    private Product product;
+    @JoinColumn(name = "id_car", referencedColumnName = "id_car")
+    private Car car;
 
     public Contract() {
     }
 
-    public Contract(Integer idContract, Boolean statusContract, LocalDate dateOfContract, Double depositAmount, Double remainingAmount, Employee employee, Customer customer, Product product) {
+    public Contract(Integer idContract, Boolean statusContract, LocalDate dateOfContract, Double depositAmount, Double remainingAmount, Employee employee, Customer customer, Car car) {
         this.idContract = idContract;
         this.statusContract = statusContract;
         this.dateOfContract = dateOfContract;
@@ -44,7 +44,7 @@ public class Contract {
         this.remainingAmount = remainingAmount;
         this.employee = employee;
         this.customer = customer;
-        this.product = product;
+        this.car = car;
     }
 
     public Integer getIdContract() {
@@ -103,11 +103,11 @@ public class Contract {
         this.customer = customer;
     }
 
-    public Product getProduct() {
-        return product;
+    public Car getCar() {
+        return car;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setCar(Car car) {
+        this.car = car;
     }
 }

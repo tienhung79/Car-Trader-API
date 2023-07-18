@@ -16,7 +16,7 @@ public class Employee {
     @Column(name = "id_employee")
     private Integer idEmployee;
 
-    private Boolean gender;
+    private boolean gender;
 
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
@@ -60,7 +60,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer idEmployee, Boolean gender, LocalDate dateOfBirth, Double salary, String image, String nameEmployee, String address, String phoneNumber, String email, Position position, Account account, Set<Contract> contractSet, Set<TrialRegistration> trialRegistrationSet) {
+    public Employee(Integer idEmployee, boolean gender, LocalDate dateOfBirth, Double salary, String image, String nameEmployee, String address, String phoneNumber, String email, Position position, Account account, Set<Contract> contractSet, Set<TrialRegistration> trialRegistrationSet) {
         this.idEmployee = idEmployee;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -84,11 +84,11 @@ public class Employee {
         this.idEmployee = idEmployee;
     }
 
-    public Boolean getGender() {
+    public boolean getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
