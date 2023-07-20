@@ -1,11 +1,15 @@
 package com.example.cartraderapi.repository;
 
 import com.example.cartraderapi.model.Account;
-import com.example.cartraderapi.model.AccountRole;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface IAccountRepository extends JpaRepository<AccountRole,Integer> {
-    List<AccountRole> findByAccount(Account account);
+@Repository
+public interface IAccountRepository extends JpaRepository<Account, Integer> {
+    @Query(value = "select * from account where account_name like :account_name", nativeQuery = true)
+    Account findAccountByNameAccount(@Param("account_name") String accountName);
 }

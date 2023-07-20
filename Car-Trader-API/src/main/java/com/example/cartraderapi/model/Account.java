@@ -8,88 +8,88 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "account")
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_account")
-    private Integer idAccount;
+    private Integer accountId;
 
-    @Column(name = "name_account",columnDefinition = "Varchar(40)",unique = true)
-    private String nameAccount;
+    @Column(name ="account_name")
+    private String accountName;
 
-    @Column(name = "password", columnDefinition = "text")
-    private String password;
+    @Column(name ="account_password")
+    private String accountPassword;
+    @Column(name ="reset_password")
+    private String resetPassword;
 
+    @Column(columnDefinition = "bit(1) default 0")
+    private Boolean isDelete;
 
-    @OneToOne(mappedBy = "account")
-    @JsonBackReference
-    private Employee employee;
-    @OneToOne(mappedBy = "account")
-    @JsonBackReference
-    private Customer customer;
-
-    @OneToMany(mappedBy = "account")
-    private Set<AccountRole> accountRoles = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "account_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    Set<Roles> roles = new HashSet<>();
 
     public Account() {
     }
 
-    public Account(Integer idAccount, String nameAccount, String password, Employee employee, Customer customer, Set<AccountRole> accountRoles) {
-        this.idAccount = idAccount;
-        this.nameAccount = nameAccount;
-        this.password = password;
-        this.employee = employee;
-        this.customer = customer;
-        this.accountRoles = accountRoles;
+    public Account(Integer accountId, String accountName,
+                   String accountPassword, String resetPassword,
+                   Boolean isDelete, Set<Roles> roles) {
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.accountPassword = accountPassword;
+        this.resetPassword = resetPassword;
+        this.isDelete = isDelete;
+        this.roles = roles;
     }
 
-    public Integer getIdAccount() {
-        return idAccount;
+    public Integer getAccountId() {
+        return accountId;
     }
 
-    public void setIdAccount(Integer idAccount) {
-        this.idAccount = idAccount;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
-    public String getNameAccount() {
-        return nameAccount;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setNameAccount(String nameAccount) {
-        this.nameAccount = nameAccount;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAccountPassword() {
+        return accountPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccountPassword(String accountPassword) {
+        this.accountPassword = accountPassword;
     }
 
-
-    public Employee getEmployee() {
-        return employee;
+    public String getResetPassword() {
+        return resetPassword;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setResetPassword(String resetPassword) {
+        this.resetPassword = resetPassword;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Boolean getDelete() {
+        return isDelete;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
     }
 
-    public Set<AccountRole> getAccountRoles() {
-        return accountRoles;
+    public Set<Roles> getRoles() {
+        return roles;
     }
 
-    public void setAccountRoles(Set<AccountRole> accountRoles) {
-        this.accountRoles = accountRoles;
+    public void setRoles(Set<Roles> roles) {
+        this.roles = roles;
     }
 }
