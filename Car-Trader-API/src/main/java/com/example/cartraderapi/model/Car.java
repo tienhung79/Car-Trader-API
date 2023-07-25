@@ -23,6 +23,11 @@ public class Car {
     @Column(name = "quantity_car")
     private int quantityOfCar;
 
+    @Column(name = "model_car", columnDefinition = "MEDIUMTEXT")
+    private String modelOfCar;
+    @Column(name = "automatic_car", columnDefinition = "MEDIUMTEXT")
+    private String automaticOfCar;
+
     @ManyToOne
     @JoinColumn(name = "id_type", referencedColumnName = "id_type")
     private CarType carType;

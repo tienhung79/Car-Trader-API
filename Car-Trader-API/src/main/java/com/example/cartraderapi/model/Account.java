@@ -27,7 +27,7 @@ public class Account {
     private Boolean isDelete;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "account_id"),
+    @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "id_account"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
     Set<Roles> roles = new HashSet<>();
 
