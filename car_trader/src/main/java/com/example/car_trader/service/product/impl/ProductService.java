@@ -56,4 +56,9 @@ public class ProductService implements IProductService {
     public void updateQuantityProduct(Product product) {
         productRepository.save(product);
     }
+
+    @Override
+    public List<Product> findByName(String nameSearch) {
+        return productRepository.findByName(nameSearch);
+    }
 }

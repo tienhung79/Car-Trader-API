@@ -32,6 +32,8 @@ import java.util.List;
 @RequestMapping("/api/public/product")
 public class ProductController {
     @Autowired
+    private ICustomerService iCustomerService;
+    @Autowired
     private IBillService billService;
 
     @Autowired
@@ -105,8 +107,25 @@ public class ProductController {
             Product product = productService.findById(productMenuDto.getProductId());
             product.setquantity(product.getquantity() - productMenuDto.getQuantityOfProduct());
             productService.updateQuantityProduct(product);
-            cartService.createCart(new Cart(productMenuDto.getQuantityOfProduct(),customer,product,bill));
+            cartService.createCart(new Cart(productMenuDto.getQuantityOfProduct(), customer, product, bill));
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> findByProductName(@RequestParam(required = false, defaultValue = "") String nameSearch) {
+        List<Product> productList = productService.findByName(nameSearch);
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
+    @GetMapping("/billHistory")
+    public ResponseEntity<List<Bill>> getBillHistory(@RequestBody String username) {
+        Customer customer = iCustomerService.findByAccount(username);
+        System.out.println(customer.getCustomerName());
+        List<Bill> bills = billService.getBillHistory(customer.getCustomerId());
+        if (bills.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(bills, HttpStatus.OK);
     }
 }

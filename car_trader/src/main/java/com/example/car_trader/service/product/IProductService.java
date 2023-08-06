@@ -23,4 +23,6 @@ public interface IProductService {
     List<Product> getProductByTypeProduct(Integer type);
 
     void updateQuantityProduct(Product product);
+
+    List<Product> findByName(String nameSearch);
 }

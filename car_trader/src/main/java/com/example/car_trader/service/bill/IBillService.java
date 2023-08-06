@@ -13,4 +13,6 @@ public interface IBillService {
     void createBill(Bill bill);
 
     Bill getBillNew();
+
+    List<Bill> getBillHistory(Integer customerId);
 }

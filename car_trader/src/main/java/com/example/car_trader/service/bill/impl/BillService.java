@@ -21,4 +21,9 @@ public class BillService implements IBillService {
     public Bill getBillNew() {
         return billRepository.getBillNew();
     }
+
+    @Override
+    public List<Bill> getBillHistory(Integer customerId) {
+        return billRepository.getBillHistory(customerId);
+    }
 }
