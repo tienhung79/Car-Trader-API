@@ -22,6 +22,7 @@ public class Product {
     private Integer quantity;
 
     private String price;
+    private String description;
     @Column(columnDefinition = "bit(1) default 0")
     private Boolean isDelete;
 
@@ -33,7 +34,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer productId, String productName, String image, String automatic, String gpsNavigation, String model, Integer quantity, String price, Boolean isDelete, ProductType productType) {
+    public Product(Integer productId, String productName, String image, String automatic, String gpsNavigation, String model, Integer quantity, String price, String description, Boolean isDelete, ProductType productType) {
         this.productId = productId;
         this.productName = productName;
         this.image = image;
@@ -42,6 +43,7 @@ public class Product {
         this.model = model;
         this.quantity = quantity;
         this.price = price;
+        this.description = description;
         this.isDelete = isDelete;
         this.productType = productType;
     }
@@ -108,6 +110,14 @@ public class Product {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Boolean getDelete() {

@@ -3,6 +3,7 @@ package com.example.car_trader.service.product.impl;
 
 import com.example.car_trader.model.Product;
 import com.example.car_trader.model.ProductType;
+import com.example.car_trader.repository.IProductRepository;
 import com.example.car_trader.repository.IProductTypeRepository;
 import com.example.car_trader.service.product.IProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class ProductTypeService implements IProductTypeService {
 
     @Autowired
     private IProductTypeRepository iProductTypeRepository;
+    @Autowired
+    private IProductRepository productRepository;
 
     @Override
     public List<ProductType> findAllType() {
@@ -28,7 +31,7 @@ public class ProductTypeService implements IProductTypeService {
 
     @Override
     public List<Product> getProductByTypeProducts(Integer type) {
-        return iProductTypeRepository.getProductByType(type);
+        return productRepository.getProductByType(type);
     }
 
     @Override
