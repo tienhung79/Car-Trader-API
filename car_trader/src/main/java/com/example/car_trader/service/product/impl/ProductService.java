@@ -51,4 +51,9 @@ public class ProductService implements IProductService {
     public List<Product> getProductByTypeProduct(Integer type) {
         return productRepository.getProductByType(type);
     }
+
+    @Override
+    public void updateQuantityProduct(Product product) {
+        productRepository.save(product);
+    }
 }

@@ -21,4 +21,6 @@ public interface IProductService {
     List<Product> findNewProduct();
 
     List<Product> getProductByTypeProduct(Integer type);
+
+    void updateQuantityProduct(Product product);
 }

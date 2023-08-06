@@ -1,6 +1,7 @@
 package com.example.car_trader.dto;
 
 
+import com.example.car_trader.model.Customer;
 import com.example.car_trader.model.Employee;
 import com.example.car_trader.model.ProductType;
 
@@ -10,31 +11,22 @@ public class ProductDTO {
 
     private String productName;
 
-    private String image;
-
-    private String status;
+    private Integer quantityOfProduct;
     private Integer quantity;
 
-    private String price;
+    private Integer price;
 
 
-    private Employee employee;
-
-    private ProductType productType;
 
     public ProductDTO() {
     }
 
-    public ProductDTO(Integer productId, String productName, String image, String status,
-                      Integer quantity, String price, Employee employee, ProductType productType) {
+    public ProductDTO(Integer productId, String productName, Integer quantityOfProduct, Integer quantity, Integer price) {
         this.productId = productId;
         this.productName = productName;
-        this.image = image;
-        this.status = status;
+        this.quantityOfProduct = quantityOfProduct;
         this.quantity = quantity;
         this.price = price;
-        this.employee = employee;
-        this.productType = productType;
     }
 
     public Integer getProductId() {
@@ -53,20 +45,12 @@ public class ProductDTO {
         this.productName = productName;
     }
 
-    public String getImage() {
-        return image;
+    public Integer getQuantityOfProduct() {
+        return quantityOfProduct;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setQuantityOfProduct(Integer quantityOfProduct) {
+        this.quantityOfProduct = quantityOfProduct;
     }
 
     public Integer getQuantity() {
@@ -77,27 +61,11 @@ public class ProductDTO {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public ProductType getProductType() {
-        return productType;
-    }
-
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
     }
 }

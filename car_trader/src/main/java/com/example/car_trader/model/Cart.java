@@ -9,7 +9,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCart;
     private Integer quantity;
-    private boolean status = true;
+
     @ManyToOne
     @JoinColumn(columnDefinition = "customer_id")
     private Customer customer;
@@ -22,15 +22,20 @@ public class Cart {
     private Bill bill;
     public Cart() {
     }
-    public Cart(Integer idCart, Integer quantity, boolean status, Customer customer, Product product, Bill bill) {
+    public Cart(Integer idCart, Integer quantity, Customer customer, Product product, Bill bill) {
         this.idCart = idCart;
         this.quantity = quantity;
-        this.status = status;
         this.customer = customer;
         this.product = product;
         this.bill = bill;
     }
 
+    public Cart(Integer quantity, Customer customer, Product product, Bill bill) {
+        this.quantity = quantity;
+        this.customer = customer;
+        this.product = product;
+        this.bill = bill;
+    }
 
     public Integer getIdCart() {
         return idCart;
@@ -46,14 +51,6 @@ public class Cart {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public Customer getCustomer() {

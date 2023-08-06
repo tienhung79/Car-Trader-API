@@ -27,12 +27,6 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             @Param("product_type_id") Integer productTypeId
     );
 
-//    @Transactional
-//    @Query(value = "SELECT * FROM product \n" +
-//            "WHERE (:productName IS NULL OR product.product_name LIKE CONCAT('%', :productName, '%'))\n" +
-//            "AND (:productTypeId = 0 OR product.product_type_id = :productTypeId)", nativeQuery = true)
-//    Page<Product> findProductByProductNameAndAndProductTypeContaining(@Param("productName") String name, @Param("productTypeId") Integer productTypeId, Pageable pageable);
-    Product findProductByProductId(int id);
 
     @Query(value = "SELECT * FROM product ORDER BY product_id DESC  LIMIT 8", nativeQuery = true)
     List<Product> findNewProduct();
