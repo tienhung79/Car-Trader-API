@@ -7,6 +7,8 @@ import com.example.car_trader.model.Bill;
 import com.example.car_trader.model.Cart;
 import com.example.car_trader.model.Customer;
 import com.example.car_trader.model.Product;
+import com.example.car_trader.security.jwt.JwtProvider;
+import com.example.car_trader.security.jwt.JwtTokenFilter;
 import com.example.car_trader.service.bill.IBillService;
 import com.example.car_trader.service.cart.ICartService;
 import com.example.car_trader.service.customer.ICustomerService;
@@ -23,6 +25,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +45,10 @@ public class ProductController {
     private ICustomerService customerService;
     @Autowired
     private ICartService cartService;
+    @Autowired
+    private JwtTokenFilter jwtTokenFilter;
+    @Autowired
+    private JwtProvider jwtProvider;
 
 
     @GetMapping("/newProduct")
@@ -121,11 +128,7 @@ public class ProductController {
     @GetMapping("/billHistory")
     public ResponseEntity<List<Bill>> getBillHistory(@RequestBody String username) {
         Customer customer = iCustomerService.findByAccount(username);
-        System.out.println(customer.getCustomerName());
         List<Bill> bills = billService.getBillHistory(customer.getCustomerId());
-        if (bills.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         return new ResponseEntity<>(bills, HttpStatus.OK);
     }
 }

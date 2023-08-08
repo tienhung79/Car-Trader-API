@@ -11,6 +11,6 @@ import java.util.List;
 public interface IBillRepository extends JpaRepository<Bill, Integer> {
     @Query(value = "SELECT * FROM bill ORDER BY id_bill DESC LIMIT 1", nativeQuery = true)
     Bill getBillNew();
-@Query(value = "select bill.* from bill join cart c on bill.id_bill = c.id_bill where customer_customer_id =:customerId",nativeQuery = true)
+@Query(value = "select bill.* from bill join cart c on bill.id_bill = c.id_bill where c.customer_customer_id =:customerId",nativeQuery = true)
     List<Bill> getBillHistory(@Param("customerId") Integer customerId);
 }
