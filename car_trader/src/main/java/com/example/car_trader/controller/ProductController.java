@@ -106,7 +106,7 @@ public class ProductController {
         ) {
             total = total + (empty.getPrice() * empty.getQuantityOfProduct());
         }
-        billService.createBill(new Bill(localDate, false, total));
+        billService.createBill(new Bill(localDate, true, total));
         Bill bill = billService.getBillNew();
 
         for (int i = 0; i < listProductMenuDto.size(); i++) {
