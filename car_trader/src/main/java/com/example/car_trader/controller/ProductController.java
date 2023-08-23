@@ -61,10 +61,10 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<Product>> getAllProduct(@PageableDefault(size = 8) Pageable pageable,
+    public ResponseEntity<Page<Product>> getAllProduct(@PageableDefault(size = 6) Pageable pageable,
                                                        @RequestParam(value = "page", defaultValue = "0")
                                                        int page) {
-        pageable = PageRequest.of(page, 8);
+        pageable = PageRequest.of(page, 6);
         Page<Product> product = productService.findAll(pageable);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -119,14 +119,15 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Product>> findByProductName(@RequestParam(required = false, defaultValue = "") String nameSearch) {
-        List<Product> productList = productService.findByName(nameSearch);
-        return new ResponseEntity<>(productList, HttpStatus.OK);
-    }
+    @GetMapping("/productName/{nameProduct}")
+    public ResponseEntity<Page<Product>> showAll(@RequestParam(value = "page", defaultValue = "0") int page, @PathVariable String nameProduct){
+        Pageable pageable = PageRequest.of(page, 6);
+        Page<Product> listProduct = productService.showListByName(pageable,nameProduct);
+        return new ResponseEntity<>(listProduct, HttpStatus.OK);
+    };
 
-    @GetMapping("/billHistory")
-    public ResponseEntity<List<Bill>> getBillHistory(@RequestBody String username) {
+    @GetMapping("/billHistory/{username}")
+    public ResponseEntity<List<Bill>> getBillHistory(@PathVariable String username) {
         Customer customer = iCustomerService.findByAccount(username);
         List<Bill> bills = billService.getBillHistory(customer.getCustomerId());
         return new ResponseEntity<>(bills, HttpStatus.OK);

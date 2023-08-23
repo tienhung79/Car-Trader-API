@@ -2,6 +2,8 @@ package com.example.car_trader.repository;
 
 
 import com.example.car_trader.model.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -36,4 +38,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     List<Product> getProductByType(@Param("productTypeId") Integer type);
 @Query(value = "select * from product where product_name like %:product_name% ",nativeQuery = true)
     List<Product> findByName(@Param("product_name") String nameSearch);
+
+    @Query(value = "select * from product where product_name like %:name_product%",nativeQuery = true)
+    Page<Product> findAllProductByName(Pageable pageable,@Param("name_product") String name);
 }

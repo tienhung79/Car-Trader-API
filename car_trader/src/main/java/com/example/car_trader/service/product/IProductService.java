@@ -25,4 +25,6 @@ public interface IProductService {
     void updateQuantityProduct(Product product);
 
     List<Product> findByName(String nameSearch);
+
+    Page<Product> showListByName(Pageable pageable, String nameProduct);
 }
